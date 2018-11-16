@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Core.Tournament>
+@{
+    ViewBag.Title = "Home Page";
+}
+@foreach (var t in Model)
+{
+    <div id="tour1" class="row">
+        <div class="col-xl-1">
+            <div id="tourInfo" class="row">
+                <div id="leftTourInfo" class="col-lg-6">
+                    <h1 class="text-center">@t.Caption</h1>
+                    <p class="text-center">@t.Info</p>
+                </div>
+                <div id="rightTourInfo" class="col-lg-6">
+                    <p class="text-center">Тур</p>
+                    <h1 class="text-center">@t.Rounds.DefaultIfEmpty(new Core.Round{ IsStarted = true, Number = 0}).Where(r=>r.IsStarted).Max(r=>r.Number).ToString()/@t.Rounds.Count()</h1>
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Участвовать</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+<div class="row">
+    <div class="col-xl-1 text-center">
+        <nav aria-label="Page navigation justify-content-center">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
